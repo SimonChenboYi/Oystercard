@@ -15,4 +15,10 @@ describe Oystercard do
       expect { subject.top_up(described_class::LIMIT + 1) }.to raise_error(message)
     end
   end
+
+  describe "#deduct" do
+  	it "should deduct the fare to the balance" do
+  		expect { subject.deduct(1) }.to change { subject.balance }.by -1 
+  	end
+  end
 end
