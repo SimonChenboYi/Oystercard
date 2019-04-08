@@ -9,5 +9,10 @@ describe Oystercard do
     it 'top up the balance' do
       expect { subject.top_up(1) }.to change { subject.balance }.by 1
     end
+
+    it 'raise an error message if the new balance exceed the limit' do
+      message = "it exceed the amount : #{described_class::LIMIT}"
+      expect { subject.top_up(described_class::LIMIT + 1) }.to raise_error(message)
+    end
   end
 end
